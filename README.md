@@ -30,3 +30,8 @@
 Каждый сервис (FileStoringService и FileAnalysisService) использует свою собственную, изолированную базу данных PostgreSQL. Это соответствует принципам микросервисной архитектуры "база данных на сервис".
 ### Файловое хранилище:
 Используется FileStoringService для физического хранения загруженных файлов. Может быть реализовано как локальная папка на сервере или как облачное хранилище (например, Azure Blob Storage, AWS S3).
+
+## Спецификация API (OpenAPI)
+Для каждого сервиса (FileStoringService.Api и FileAnalysisService.Api) настроена поддержка OpenAPI (Swagger). Спецификацию можно получить, обратившись к Swagger UI каждого сервиса при их запуске:
+- File Storing Service Swagger UI: http://localhost:5001/swagger/index.html (в среде разработки)
+- File Analysis Service Swagger UI: http://localhost:5002/swagger/index.html (или https://localhost:7002/swagger/index.html в среде разработки)
