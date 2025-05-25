@@ -1,0 +1,60 @@
+{
+  "Routes": [
+    // --- FileStoringService Routes ---
+    {
+      "DownstreamPathTemplate": "/api/files", // Путь, на который Ocelot отправит запрос в FileStoringService
+      "DownstreamScheme": "https", // Схема для FileStoringService
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", // Хост FileStoringService (для локальной разработки)
+          "Port": 5001 // Порт FileStoringService (для локальной разработки)
+        }
+      ],
+      "UpstreamPathTemplate": "/api/files", // Путь, который будет слушать API Gateway
+      "UpstreamHttpMethod": [ "POST" ] // HTTP метод для этого маршрута
+    },
+    {
+      "DownstreamPathTemplate": "/api/files/{id}/content",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/files/{id}/content",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    // --- FileAnalysisService Routes ---
+    {
+      // Маршрут для запуска анализа файла
+      "DownstreamPathTemplate": "/api/analysis/{fileId}", // Путь в FileAnalysisService
+      "DownstreamScheme": "https", // Схема для FileAnalysisService
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", // Хост FileAnalysisService (для локальной разработки)
+          "Port": 7002 // Порт FileAnalysisService (для локальной разработки)
+        }
+      ],
+      "UpstreamPathTemplate": "/api/analysis/{fileId}", // Путь, который будет слушать API Gateway
+      "UpstreamHttpMethod": [ "POST" ] // POST для запуска анализа
+    },
+    {
+      // Маршрут для получения результатов анализа
+      "DownstreamPathTemplate": "/api/analysis/results/{fileId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/analysis/results/{fileId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5000" // URL, на котором будет слушать API Gateway
+  }
+}
