@@ -31,7 +31,24 @@
 ### Файловое хранилище:
 Используется FileStoringService для физического хранения загруженных файлов. Может быть реализовано как локальная папка на сервере или как облачное хранилище (например, Azure Blob Storage, AWS S3).
 
-## Спецификация API (OpenAPI)
+## Спецификация API 
 Для каждого сервиса (FileStoringService.Api и FileAnalysisService.Api) настроена поддержка OpenAPI (Swagger). Спецификацию можно получить, обратившись к Swagger UI каждого сервиса при их запуске:
 - File Storing Service Swagger UI: http://localhost:5001/swagger/index.html (в среде разработки)
 - File Analysis Service Swagger UI: http://localhost:5002/swagger/index.html (или https://localhost:7002/swagger/index.html в среде разработки)
+
+## Инструкции по Запуску и Развертыванию
+## Требования:
+- .NET SDK (версия, указанная в проектах, например, .NET 8.0).
+- PostgreSQL сервер.
+## Настройка баз данных:
+Создайте две базы данных в PostgreSQL: одну для FileStoringService (textscanner_filestoring_dev) и одну для FileAnalysisService (textscanner_fileanalysis_dev).
+## Запуск сервисов:
+Можно настроить Visual Studio на запуск нескольких проектов (ApiGateway, FileStoringService.Api, FileAnalysisService.Api).
+Либо запустить каждый сервис из командной строки с помощью dotnet run в соответствующей папке проекта.
+
+### Пример работы сервисов:
+## FileStoringService
+![image](https://github.com/user-attachments/assets/505e3fdf-353f-44f1-8936-ad1fe8d8aa4d)
+## FileAnalysisService
+![image](https://github.com/user-attachments/assets/04d742e7-80c8-4b73-b785-dc072b60a746)
+
